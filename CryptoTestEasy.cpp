@@ -35,7 +35,7 @@ void Test() {
         std::cout << "Правильно!\n";
     }
     else {
-        std::cout << "Неправильно. Правильный ответ: " << original << "\n";
+        std::cout << "Неправильно.\n";
     }
 }
 
@@ -54,7 +54,7 @@ void TestTwo() {
         std::cout << "Правильно!\n";
     }
     else {
-        std::cout << "Неправильно. Правильный ответ: " << original << "\n";
+        std::cout << "Неправильно.\n";
     }
 }
 
@@ -77,7 +77,7 @@ void TestFree() {
         std::cout << "Правильно!\n";
     }
     else {
-        std::cout << "Неправильно. Правильный ответ: " << original << "\n";
+        std::cout << "Неправильно.\n";
     }
 }
 
@@ -99,7 +99,7 @@ void TestFour() {
         std::cout << "Правильно!\n";
     }
     else {
-        std::cout << "Неправильно. Правильный ответ: " << original << "\n";
+        std::cout << "Неправильно.\n";
     }
 }
 
@@ -122,6 +122,9 @@ void TestFive() {
         std::cout << "Правильно!\n";
     }
     else {
-        std::cout << "Неправильно. Правильный ответ: " << original << "\n";
+        std::cout << "Неправильно.\n";
     }
 }
+
+
+

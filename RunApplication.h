@@ -7,6 +7,7 @@
 #include "Levels.h"
 #include "Ciphers.h"
 #include "RunApplication.h"
+#include "Authorization.h"
 
 
 void RunApplication();
