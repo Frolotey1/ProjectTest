@@ -1,9 +1,10 @@
 
 #include "Header.h"
 #include "RunApplication.h"
+#include <locale>
 
-int main()
-{
+int main() {
+	setlocale(LC_ALL,"Rus");
 	RunApplication();
 	return 0;
 }
