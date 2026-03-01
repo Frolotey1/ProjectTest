@@ -1,62 +1,181 @@
+
 #include "Authorization.h"
-#include "windows.h"
-size_t userSize = 1;
-std::string userStatus[1] = { "Клиент" };
-std::string* loginArr = new std::string[userSize]{ "user","user" };
-std::string* passArr = new std::string[userSize]{ "user","user" };
-std::string* statusArr = new std::string[userSize]{ userStatus[0]};
-std::string currentStatus;
-bool Login()
+#include "CryptoTestEasy.h"
+
+
+std::vector<User> users = { {"user", "user", "Клиент"} };
+std::string currentUserStatus;
+
+bool CheckLogin(const std::string& str)
 {
-	
-	std::string choose, login, pass;
-	while (true)
-	{
-		std::cout << "\n=== КРИПТОГРАФИЧЕСКИЙ ТРЕНАЖЁР ===\n";
-		std::cout << "\n=== ДЛЯ ПРОХОЖДЕНИЯ ТЕСТОВ НУЖЕН АККАУНТ ===\n";
-		std::cout << "Есть два варианта входа:\n1 - Регистрация\n2 - Вход\n\"exit\" для выхода\n";
-		std::cout << "Введите номер операции: ";
-		Getline(choose);
-		if (choose == "exit" || choose == "Exit") return false;
+    // Проверка длины
+    if (str.size() < 5 || str.size() > 20) {
+        std::cout << "Недопустимая длина логина. От 5 до 20 символов\n";
+        Sleep(1500);
+        return false;
+    }
 
-		if (choose == "1")
-		{
-			std::cout << "Регистрация\n";
+    // Проверка допустимых символов(только буквы)
+    for (char c : str) {
+        if (!isalpha(c)) {
+            std::cout << "Некорректные символы в логине. Разрешены только буквы A-Z, a-z\n";
+            Sleep(1500);
+            return false;
+        }
+    }
 
+    // Уникальность
+    for (const auto& user : users) {
+        if (user.login == str) {
+         
+            std::cout << "Пользователь с таким логином уже существует!\n";
+         ;
+            Sleep(1500);
+            return false;
+        }
+    }
+    return true;
+}
 
-		}
-		else if (choose == "2")
-		{
-			std::cout << "Вход в аккаунт\n";
-			std::cout << "Введите логин: ";
-			Getline(login);
-			std::cout << "Введите пароль: ";
-			Getline(pass);
-			if (login == "exit" || pass == "Exit") return false;
-			
-			if (login == loginArr[0] && pass == passArr[0])
-			{
-				std::cout << "Пользователь - " << loginArr[0] << "\n\nДобро пожаловать!\n";
-				std::cout << "Ваш статус - " << statusArr[0] << "\n\n";
-				currentStatus = statusArr[0];
-				system("pause");
-				return true;
-			}
-			
-			for (std::size_t i = 0; i < userSize; i++)
-			{
-				std::cout << "Пользователь - " << loginArr[i] << "\n\nДобро пожаловать!\n";
-				std::cout << "Ваш статус - " << statusArr[i] << "\n\n";
-				currentStatus = statusArr[i];
-				currentId = i;
-				system("pause");
-				return true;
-			}
+// Проверка pass
+bool CheckPass(const std::string& str) {
+    if (str.size() < 5 || str.size() > 64) {
+        std::cout << "Недопустимая длина пароля! От 5 до 64 символов\n";
+        Sleep(1500);
+        return false;
+    }
 
-		}
-		std::cout << "Неверный логин или пароль!\n";
-		Sleep(1500);
-	}
+    // символы ascii
+    std::unordered_set<char> allowed;
+    for (char c = '!'; c <= '~'; ++c) {
+        allowed.insert(c);
+    }
 
-	
+    for (char c : str) {
+        if (allowed.find(c) == allowed.end()) {
+            std::cout << "Некорректные символы в пароле. Разрешены только печатные ASCII символы.\n";
+            Sleep(1500);
+            return false;
+        }
+    }
+
+    // Специальные символы
+    std::unordered_set<char> special = {
+        '!', '@', '#', '%', '^', '&', '*', '(', ')', '-', '_', '=', '+',
+        '/', '?', '|', '\\', '\"', '\'', ',', '.', '>', '<', '~', '`', ':',
+        ';', '{', '}', '[', ']'
+    };
+
+    int specialCount = 0;
+    for (char c : str) {
+        if (special.count(c)) {
+            specialCount++;
+            if (specialCount >= 3) break;
+        }
+    }
+
+    if (specialCount < 3) {
+        std::cout << "Требуется минимум 3 специальных символа\n";
+        Sleep(1500);
+        return false;
+    }
+
+    return true;
+}
+
+bool Login() {
+    std::string choose;
+    std::string login, pass;
+    while (true)
+    {
+        std::cout << "\n=== КРИПТОГРАФИЧЕСКИЙ ТРЕНАЖЁР ===\n";
+        std::cout << "\n=== Вход в систему ===\n";
+        std::cout << "1 – Вход\n";
+        std::cout << "2 – Регистрация\n";
+        std::cout << "0 – Выход\n";
+        std::cout << "Ваш выбор: ";
+        Getline(choose);
+
+        if (choose == "0") {
+            return false;
+        }
+        else if (choose == "1") {
+            
+            
+            while (true) {
+                std::cout << "Введите логин или \"exit\" для возврата в меню: ";
+                Getline(login);
+                if (login == "exit") break; 
+
+                std::cout << "Введите пароль: ";
+                Getline(pass);
+
+                // Поиск в векторе
+                bool found = false;
+                for (const auto& user : users) {
+                    if (user.login == login && user.password == pass) {
+                        currentUserStatus = user.status;
+                        std::cout << "\nДобро пожаловать, " << login << "\n";
+                        std::cout << "Ваш статус: " << currentUserStatus << "\n";
+                        system("pause");
+                        return true;
+                    }
+                }
+
+                if (!found) {
+                    std::cout << "Неверный логин или пароль!\n";
+                    Err(1500);
+                }
+            }
+        }
+        else if (choose == "2") {
+            // Регистрация
+            RegisterUser();
+      
+        }
+        else {
+            Err(); // неверный ввод
+        }
+    }
+}
+
+void RegisterUser()
+{
+    std::string login, pass;
+
+    // Ввод логина
+    while (true) {
+        system("cls");
+        std::cout << "\t=== Регистрация нового пользователя ===\n";
+        std::cout << "Введите логин (от 5 до 20 символов, только буквы) или \"exit\": \n";
+        Getline(login);
+        if (login == "exit" || login == "Exit") {
+            std::cout << "Регистрация отменена.\n";
+            Sleep(1500);
+            return;
+        }
+        if (CheckLogin(login)) break;
+    }
+
+    // Ввод пароля
+    while (true) {
+        system("cls");
+        std::cout << "\n=== КРИПТОГРАФИЧЕСКИЙ ТРЕНАЖЁР ===\n";
+        std::cout << "\t=== Регистрация ===\n";
+        std::cout << "Введите пароль (от 5 до 64 символов, минимум 3 спецсимвола) или \"exit\": \n";
+      
+        Getline(pass);
+        if (pass == "exit" || pass == "Exit") {
+            std::cout << "Регистрация отменена.\n";
+            Sleep(1500);
+            return;
+        }
+        if (CheckPass(pass)) break;
+    }
+
+    users.push_back({ login, pass, "Клиент" });
+
+    std::cout << "\nПользователь успешно зарегистрирован\n";
+   
+    system("pause");
 }

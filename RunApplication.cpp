@@ -1,9 +1,13 @@
 #include "RunApplication.h"
-
+#include "Authorization.h"
 
 void RunApplication() {
-  
     std::srand(static_cast<unsigned>(std::time(nullptr)));
+
+    if (!Login()) {
+        std::cout << "Âûõîä èç ïðîãðàììû.\n";
+        return;
+    }
 
     while (true) {
         std::cout << "\n=== ÊÐÈÏÒÎÃÐÀÔÈ×ÅÑÊÈÉ ÒÐÅÍÀÆ¨Ð ===\n";

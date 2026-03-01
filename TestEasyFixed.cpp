@@ -89,12 +89,10 @@ void test4()
             std::cout << "Выход из теста.\n";
             return;
         }
-        int num = IsNumber(answer);
-        if (num == 101110)
-        {
+       
+        if (answer == "101110") {
             std::cout << "Правильно!\n";
             return;
-
         }
         else Err(1000);
 

@@ -1,15 +1,17 @@
 #ifndef AUTHORIZATION_H_
 #define AUTHORIZATION_H_
-// авторизация
-#include "RunApplication.h"
-extern size_t userSize;
-extern std::string userStatus[1];
-extern std::string* loginArr;
-extern std::string* passArr;
-extern std::string* statusArr;
-extern int currentId;
 
+#include "Header.h"
+
+struct User {
+    std::string login;
+    std::string password;
+    std::string status;
+};
+
+extern std::vector<User> users;
+extern std::string currentUserStatus;
 bool Login();
+void RegisterUser();
 
-
-#endif // AUTHORIZATION_H_
+#endif

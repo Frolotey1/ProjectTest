@@ -28,8 +28,8 @@ std::string atbash(const std::string& text) {
     std::string result;
     for (char c : text) {
         if (isalpha(c)) {
-            char base = islower(c) ? 'a' : 'A'; // зеркальная позиция и регистр
-            result += base + ('z' - c);
+            char base = islower(c) ? 'a' : 'A'; // зеркальное отоброжение
+            result += base + (25 - (c - base));
         }
         else {
             result += c; 

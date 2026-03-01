@@ -8,6 +8,6 @@ int main()
 {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	 RunApplication();
-		return 0;
+	RunApplication();
+	return 0;
 }

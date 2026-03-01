@@ -123,7 +123,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AddNewUsers.h" />
     <ClInclude Include="Authorization.h" />
     <ClInclude Include="Ciphers.h" />
     <ClInclude Include="CryptoTestEasy.h" />
@@ -133,7 +132,6 @@
     <ClInclude Include="TestEasyFixed.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AddNewUsers.cpp" />
     <ClCompile Include="Authorization.cpp" />
     <ClCompile Include="Ciphers.cpp" />
     <ClCompile Include="CryptoTestEasy.cpp" />
