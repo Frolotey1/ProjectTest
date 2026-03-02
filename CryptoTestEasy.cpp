@@ -24,18 +24,18 @@ void Test() {
     int shift = rand() % 25 + 1;
     std::string cipher = caesarEncrypt(original, shift);
 
-    std::cout << "\n=== Çàäà÷à 1: Øèôð Öåçàðÿ ===\n";
-    std::cout << "Çàøèôðîâàííîå ñëîâî: " << cipher << "\n";
-    std::cout << "Ââåäèòå ðàñøèôðîâàííîå ñëîâî (èëè 'exit'): ";
+    std::cout << "\n=== Ð—Ð°Ð´Ð°Ñ‡Ð° 1: Ð¨Ð¸Ñ„Ñ€ Ð¦ÐµÐ·Ð°Ñ€Ñ ===\n";
+    std::cout << "Ð—Ð°ÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð½Ð¾Ðµ ÑÐ»Ð¾Ð²Ð¾: " << cipher << "\n";
+    std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ€Ð°ÑÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð½Ð¾Ðµ ÑÐ»Ð¾Ð²Ð¾ (Ð¸Ð»Ð¸ 'exit'): ";
     std::string answer;
     Getline(answer);
 
     if (answer == "exit" || answer == "Exit") return;
     if (toLower(answer) == original) {
-        std::cout << "Ïðàâèëüíî!\n";
+        std::cout << "ÐŸÑ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð¾!\n";
     }
     else {
-        std::cout << "Íåïðàâèëüíî.\n";
+        std::cout << "ÐÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð¾.\n";
     }
 }
 
@@ -43,18 +43,18 @@ void TestTwo() {
     std::string original = randomWord();
     std::string cipher = atbash(original);
 
-    std::cout << "\n=== Çàäà÷à 2: Øèôð Àòáàø ===\n";
-    std::cout << "Çàøèôðîâàííîå ñëîâî: " << cipher << "\n";
-    std::cout << "Ââåäèòå ðàñøèôðîâàííîå ñëîâî (èëè 'exit'): ";
+    std::cout << "\n=== Ð—Ð°Ð´Ð°Ñ‡Ð° 2: Ð¨Ð¸Ñ„Ñ€ ÐÑ‚Ð±Ð°Ñˆ ===\n";
+    std::cout << "Ð—Ð°ÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð½Ð¾Ðµ ÑÐ»Ð¾Ð²Ð¾: " << cipher << "\n";
+    std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ€Ð°ÑÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð½Ð¾Ðµ ÑÐ»Ð¾Ð²Ð¾ (Ð¸Ð»Ð¸ 'exit'): ";
     std::string answer;
     Getline(answer);
 
     if (answer == "exit" || answer == "Exit") return;
     if (toLower(answer) == original) {
-        std::cout << "Ïðàâèëüíî!\n";
+        std::cout << "ÐŸÑ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð¾!\n";
     }
     else {
-        std::cout << "Íåïðàâèëüíî.\n";
+        std::cout << "ÐÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð¾.\n";
     }
 }
 
@@ -63,21 +63,21 @@ void TestFree() {
     std::string original = randomWord();
     std::string cipher = xorEncrypt(original, key);
 
-    std::cout << "\n=== Çàäà÷à 3: XOR-øèôðîâàíèå ===\n";
-    std::cout << "Çàøèôðîâàííîå ñëîâî (hex): ";
+    std::cout << "\n=== Ð—Ð°Ð´Ð°Ñ‡Ð° 3: XOR-ÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ ===\n";
+    std::cout << "Ð—Ð°ÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð½Ð¾Ðµ ÑÐ»Ð¾Ð²Ð¾ (hex): ";
     for (unsigned char c : cipher) {
         std::cout << std::hex << (int)c << " ";
     }
-    std::cout << "\nÂâåäèòå ðàñøèôðîâàííîå ñëîâî (èëè 'exit'): ";
+    std::cout << "\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ€Ð°ÑÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð½Ð¾Ðµ ÑÐ»Ð¾Ð²Ð¾ (Ð¸Ð»Ð¸ 'exit'): ";
     std::string answer;
     Getline(answer);
 
     if (answer == "exit" || answer == "Exit") return;
     if (toLower(answer) == original) {
-        std::cout << "Ïðàâèëüíî!\n";
+        std::cout << "ÐŸÑ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð¾!\n";
     }
     else {
-        std::cout << "Íåïðàâèëüíî.\n";
+        std::cout << "ÐÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð¾.\n";
     }
 }
 
@@ -85,21 +85,21 @@ void TestFour() {
     std::string original = randomWord();
     std::string cipher = swapNibbles(original);
 
-    std::cout << "\n=== Çàäà÷à 4: Ïåðåñòàíîâêà òåòðàä ===\n";
-    std::cout << "Çàøèôðîâàííîå ñëîâî (hex): ";
+    std::cout << "\n=== Ð—Ð°Ð´Ð°Ñ‡Ð° 4: ÐŸÐµÑ€ÐµÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ° Ñ‚ÐµÑ‚Ñ€Ð°Ð´ ===\n";
+    std::cout << "Ð—Ð°ÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð½Ð¾Ðµ ÑÐ»Ð¾Ð²Ð¾ (hex): ";
     for (unsigned char c : cipher) {
         std::cout << std::hex << (int)c << " ";
     }
-    std::cout << "\nÂâåäèòå ðàñøèôðîâàííîå ñëîâî (èëè 'exit'): ";
+    std::cout << "\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ€Ð°ÑÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð½Ð¾Ðµ ÑÐ»Ð¾Ð²Ð¾ (Ð¸Ð»Ð¸ 'exit'): ";
     std::string answer;
     Getline(answer);
 
     if (answer == "exit" || answer == "Exit") return;
     if (toLower(answer) == original) {
-        std::cout << "Ïðàâèëüíî!\n";
+        std::cout << "ÐŸÑ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð¾!\n";
     }
     else {
-        std::cout << "Íåïðàâèëüíî.\n";
+        std::cout << "ÐÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð¾.\n";
     }
 }
 
@@ -108,21 +108,21 @@ void TestFive() {
     std::string original = randomWord();
     std::string cipher = cbcEncrypt(original, iv);
 
-    std::cout << "\n=== Çàäà÷à 5: Áëî÷íîå øèôðîâàíèå (CBC) ===\n";
-    std::cout << "Çàøèôðîâàííîå ñëîâî (hex): ";
+    std::cout << "\n=== Ð—Ð°Ð´Ð°Ñ‡Ð° 5: Ð‘Ð»Ð¾Ñ‡Ð½Ð¾Ðµ ÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ (CBC) ===\n";
+    std::cout << "Ð—Ð°ÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð½Ð¾Ðµ ÑÐ»Ð¾Ð²Ð¾ (hex): ";
     for (unsigned char c : cipher) {
         std::cout << std::hex << (int)c << " ";
     }
-    std::cout << "\nÂâåäèòå ðàñøèôðîâàííîå ñëîâî (èëè 'exit'): ";
+    std::cout << "\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ€Ð°ÑÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð½Ð¾Ðµ ÑÐ»Ð¾Ð²Ð¾ (Ð¸Ð»Ð¸ 'exit'): ";
     std::string answer;
     Getline(answer);
 
     if (answer == "exit" || answer == "Exit") return;
     if (toLower(answer) == original) {
-        std::cout << "Ïðàâèëüíî!\n";
+        std::cout << "ÐŸÑ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð¾!\n";
     }
     else {
-        std::cout << "Íåïðàâèëüíî.\n";
+        std::cout << "ÐÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð¾.\n";
     }
 }
 
