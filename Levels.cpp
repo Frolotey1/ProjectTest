@@ -15,10 +15,10 @@ static void printHex(const std::string& s) {
 
 static void printStored() {
     if (encryptedMessages.empty()) {
-        std::cout << "Íåò ñîõðàí¸ííûõ çàøèôðîâàííûõ ñîîáùåíèé.\n";
+        std::cout << "ÐÐµÑ‚ ÑÐ¾Ñ…Ñ€Ð°Ð½Ñ‘Ð½Ð½Ñ‹Ñ… Ð·Ð°ÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð½Ñ‹Ñ… ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ð¹.\n";
         return;
     }
-    std::cout << "Ñîõðàí¸ííûå çàøèôðîâàííûå ñîîáùåíèÿ:\n";
+    std::cout << "Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ñ‘Ð½Ð½Ñ‹Ðµ Ð·Ð°ÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð½Ñ‹Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ:\n";
     for (size_t i = 0; i < encryptedMessages.size(); ++i) {
         std::cout << i + 1 << ": ";
         printHex(encryptedMessages[i]);
@@ -48,85 +48,85 @@ static int getChoice(const std::string& prompt, int min, int max) {
 }
 
 static void caesarHandler(int level) {
-    int action = getChoice("1 – çàøèôðîâàòü, 2 – ðàñøèôðîâàòü, 0 – íàçàä: ", 0, 2);
+    int action = getChoice("1 â€“ Ð·Ð°ÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ, 2 â€“ Ñ€Ð°ÑÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ, 0 â€“ Ð½Ð°Ð·Ð°Ð´: ", 0, 2);
     if (action == 0) return;
     if (action == 1) {
-        std::string text = getInput("Ââåäèòå òåêñò: ");
-        int shift = (level == 2) ? 3 : getChoice("Ââåäèòå ñäâèã (1-25): ", 1, 25);
+        std::string text = getInput("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‚ÐµÐºÑÑ‚: ");
+        int shift = (level == 2) ? 3 : getChoice("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÐ´Ð²Ð¸Ð³ (1-25): ", 1, 25);
         if (shift == -1) return;
         std::string enc = caesarEncrypt(text, shift);
         encryptedMessages.push_back(enc);
-        std::cout << "Çàøèôðîâàíî: ";
+        std::cout << "Ð—Ð°ÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð¾: ";
         printHex(enc);
-        std::cout << " (íîìåð " << encryptedMessages.size() << ")\n";
+        std::cout << " (Ð½Ð¾Ð¼ÐµÑ€ " << encryptedMessages.size() << ")\n";
     }
     else {
         if (encryptedMessages.empty()) {
-            std::cout << "Íåò ñîõðàí¸ííûõ ñîîáùåíèé.\n";
+            std::cout << "ÐÐµÑ‚ ÑÐ¾Ñ…Ñ€Ð°Ð½Ñ‘Ð½Ð½Ñ‹Ñ… ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ð¹.\n";
             return;
         }
         printStored();
-        int idx = getChoice("Âûáåðèòå íîìåð: ", 1, encryptedMessages.size());
+        int idx = getChoice("Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€: ", 1, encryptedMessages.size());
         if (idx == -1) return;
-        int shift = (level == 2) ? 3 : getChoice("Ââåäèòå ñäâèã (1-25): ", 1, 25);
+        int shift = (level == 2) ? 3 : getChoice("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÐ´Ð²Ð¸Ð³ (1-25): ", 1, 25);
         if (shift == -1) return;
         std::string dec = caesarDecrypt(encryptedMessages[idx - 1], shift);
-        std::cout << "Ðàñøèôðîâàíî: " << dec << "\n";
+        std::cout << "Ð Ð°ÑÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð¾: " << dec << "\n";
     }
 }
 
 static void atbashHandler(int level) {
-    int action = getChoice("1 – çàøèôðîâàòü, 2 – ðàñøèôðîâàòü, 0 – íàçàä: ", 0, 2);
+    int action = getChoice("1 â€“ Ð·Ð°ÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ, 2 â€“ Ñ€Ð°ÑÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ, 0 â€“ Ð½Ð°Ð·Ð°Ð´: ", 0, 2);
     if (action == 0) return;
     if (action == 1) {
-        std::string text = getInput("Ââåäèòå òåêñò: ");
+        std::string text = getInput("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‚ÐµÐºÑÑ‚: ");
         std::string enc = atbash(text);
         encryptedMessages.push_back(enc);
-        std::cout << "Çàøèôðîâàíî: ";
+        std::cout << "Ð—Ð°ÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð¾: ";
         printHex(enc);
-        std::cout << " (íîìåð " << encryptedMessages.size() << ")\n";
+        std::cout << " (Ð½Ð¾Ð¼ÐµÑ€ " << encryptedMessages.size() << ")\n";
     }
     else {
         if (encryptedMessages.empty()) {
-            std::cout << "Íåò ñîõðàí¸ííûõ ñîîáùåíèé.\n";
+            std::cout << "ÐÐµÑ‚ ÑÐ¾Ñ…Ñ€Ð°Ð½Ñ‘Ð½Ð½Ñ‹Ñ… ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ð¹.\n";
             return;
         }
         printStored();
-        int idx = getChoice("Âûáåðèòå íîìåð: ", 1, encryptedMessages.size());
+        int idx = getChoice("Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€: ", 1, encryptedMessages.size());
         if (idx == -1) return;
         std::string dec = atbash(encryptedMessages[idx - 1]);
-        std::cout << "Ðàñøèôðîâàíî: " << dec << "\n";
+        std::cout << "Ð Ð°ÑÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð¾: " << dec << "\n";
     }
 }
 
 static void xorHandler(int level) {
-    int action = getChoice("1 – çàøèôðîâàòü, 2 – ðàñøèôðîâàòü, 0 – íàçàä: ", 0, 2);
+    int action = getChoice("1 â€“ Ð·Ð°ÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ, 2 â€“ Ñ€Ð°ÑÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ, 0 â€“ Ð½Ð°Ð·Ð°Ð´: ", 0, 2);
     if (action == 0) return;
     if (action == 1) {
-        std::string text = getInput("Ââåäèòå òåêñò: ");
+        std::string text = getInput("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‚ÐµÐºÑÑ‚: ");
         std::string enc;
         if (level == 2) {
             char key = 'K';
             enc = xorEncrypt(text, key);
         }
         else {
-            std::string key = getInput("Ââåäèòå êëþ÷-ñòðîêó: ");
+            std::string key = getInput("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ»ÑŽÑ‡-ÑÑ‚Ñ€Ð¾ÐºÑƒ: ");
             enc = text;
             for (size_t i = 0; i < text.size(); ++i)
                 enc[i] = text[i] ^ key[i % key.size()];
         }
         encryptedMessages.push_back(enc);
-        std::cout << "Çàøèôðîâàíî: ";
+        std::cout << "Ð—Ð°ÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð¾: ";
         printHex(enc);
-        std::cout << " (íîìåð " << encryptedMessages.size() << ")\n";
+        std::cout << " (Ð½Ð¾Ð¼ÐµÑ€ " << encryptedMessages.size() << ")\n";
     }
     else {
         if (encryptedMessages.empty()) {
-            std::cout << "Íåò ñîõðàí¸ííûõ ñîîáùåíèé.\n";
+            std::cout << "ÐÐµÑ‚ ÑÐ¾Ñ…Ñ€Ð°Ð½Ñ‘Ð½Ð½Ñ‹Ñ… ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ð¹.\n";
             return;
         }
         printStored();
-        int idx = getChoice("Âûáåðèòå íîìåð: ", 1, encryptedMessages.size());
+        int idx = getChoice("Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€: ", 1, encryptedMessages.size());
         if (idx == -1) return;
         std::string cipher = encryptedMessages[idx - 1];
         std::string dec;
@@ -135,90 +135,90 @@ static void xorHandler(int level) {
             dec = xorDecrypt(cipher, key);
         }
         else {
-            std::string key = getInput("Ââåäèòå êëþ÷-ñòðîêó: ");
+            std::string key = getInput("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ»ÑŽÑ‡-ÑÑ‚Ñ€Ð¾ÐºÑƒ: ");
             dec = cipher;
             for (size_t i = 0; i < cipher.size(); ++i)
                 dec[i] = cipher[i] ^ key[i % key.size()];
         }
-        std::cout << "Ðàñøèôðîâàíî: " << dec << "\n";
+        std::cout << "Ð Ð°ÑÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð¾: " << dec << "\n";
     }
 }
 
 static void swapHandler(int level) {
-    int action = getChoice("1 – çàøèôðîâàòü, 2 – ðàñøèôðîâàòü, 0 – íàçàä: ", 0, 2);
+    int action = getChoice("1 â€“ Ð·Ð°ÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ, 2 â€“ Ñ€Ð°ÑÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ, 0 â€“ Ð½Ð°Ð·Ð°Ð´: ", 0, 2);
     if (action == 0) return;
     if (action == 1) {
-        std::string text = getInput("Ââåäèòå òåêñò: ");
+        std::string text = getInput("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‚ÐµÐºÑÑ‚: ");
         std::string enc = swapNibbles(text);
         encryptedMessages.push_back(enc);
-        std::cout << "Çàøèôðîâàíî: ";
+        std::cout << "Ð—Ð°ÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð¾: ";
         printHex(enc);
-        std::cout << " (íîìåð " << encryptedMessages.size() << ")\n";
+        std::cout << " (Ð½Ð¾Ð¼ÐµÑ€ " << encryptedMessages.size() << ")\n";
     }
     else {
         if (encryptedMessages.empty()) {
-            std::cout << "Íåò ñîõðàí¸ííûõ ñîîáùåíèé.\n";
+            std::cout << "ÐÐµÑ‚ ÑÐ¾Ñ…Ñ€Ð°Ð½Ñ‘Ð½Ð½Ñ‹Ñ… ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ð¹.\n";
             return;
         }
         printStored();
-        int idx = getChoice("Âûáåðèòå íîìåð: ", 1, encryptedMessages.size());
+        int idx = getChoice("Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€: ", 1, encryptedMessages.size());
         if (idx == -1) return;
         std::string dec = swapNibbles(encryptedMessages[idx - 1]);
-        std::cout << "Ðàñøèôðîâàíî: " << dec << "\n";
+        std::cout << "Ð Ð°ÑÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð¾: " << dec << "\n";
     }
 }
 
 static void cbcHandler(int level) {
-    int action = getChoice("1 – çàøèôðîâàòü, 2 – ðàñøèôðîâàòü, 0 – íàçàä: ", 0, 2);
+    int action = getChoice("1 â€“ Ð·Ð°ÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ, 2 â€“ Ñ€Ð°ÑÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ, 0 â€“ Ð½Ð°Ð·Ð°Ð´: ", 0, 2);
     if (action == 0) return;
     if (action == 1) {
-        std::string text = getInput("Ââåäèòå òåêñò: ");
+        std::string text = getInput("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‚ÐµÐºÑÑ‚: ");
         char iv;
         if (level == 2) {
             iv = 'I';
         }
         else {
-            std::string ivStr = getInput("Ââåäèòå IV (îäèí ñèìâîë): ");
+            std::string ivStr = getInput("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ IV (Ð¾Ð´Ð¸Ð½ ÑÐ¸Ð¼Ð²Ð¾Ð»): ");
             iv = ivStr.empty() ? 'I' : ivStr[0];
         }
         std::string enc = cbcEncrypt(text, iv);
         encryptedMessages.push_back(enc);
-        std::cout << "Çàøèôðîâàíî: ";
+        std::cout << "Ð—Ð°ÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð¾: ";
         printHex(enc);
-        std::cout << " (íîìåð " << encryptedMessages.size() << ")\n";
+        std::cout << " (Ð½Ð¾Ð¼ÐµÑ€ " << encryptedMessages.size() << ")\n";
     }
     else {
         if (encryptedMessages.empty()) {
-            std::cout << "Íåò ñîõðàí¸ííûõ ñîîáùåíèé.\n";
+            std::cout << "ÐÐµÑ‚ ÑÐ¾Ñ…Ñ€Ð°Ð½Ñ‘Ð½Ð½Ñ‹Ñ… ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ð¹.\n";
             return;
         }
         printStored();
-        int idx = getChoice("Âûáåðèòå íîìåð: ", 1, encryptedMessages.size());
+        int idx = getChoice("Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€: ", 1, encryptedMessages.size());
         if (idx == -1) return;
         char iv;
         if (level == 2) {
             iv = 'I';
         }
         else {
-            std::string ivStr = getInput("Ââåäèòå IV (îäèí ñèìâîë): ");
+            std::string ivStr = getInput("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ IV (Ð¾Ð´Ð¸Ð½ ÑÐ¸Ð¼Ð²Ð¾Ð»): ");
             iv = ivStr.empty() ? 'I' : ivStr[0];
         }
         std::string dec = cbcDecrypt(encryptedMessages[idx - 1], iv);
-        std::cout << "Ðàñøèôðîâàíî: " << dec << "\n";
+        std::cout << "Ð Ð°ÑÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð¾: " << dec << "\n";
     }
 }
 
 void runLevel(int level) {
-    std::cout << "\n=== Ïåñî÷íèöà (óðîâåíü " << level << ") ===\n";
+    std::cout << "\n=== ÐŸÐµÑÐ¾Ñ‡Ð½Ð¸Ñ†Ð° (ÑƒÑ€Ð¾Ð²ÐµÐ½ÑŒ " << level << ") ===\n";
     while (true) {
-        std::cout << "\nÂûáåðèòå øèôð:\n";
-        std::cout << "1 – Öåçàðü\n";
-        std::cout << "2 – Àòáàø\n";
-        std::cout << "3 – XOR\n";
-        std::cout << "4 – Ïåðåñòàíîâêà òåòðàä (Swap Nibbles)\n";
-        std::cout << "5 – Ïðîñòîé CBC\n";
-        std::cout << "0 – Âûõîä â ãëàâíîå ìåíþ\n";
-        std::cout << "Âàø âûáîð: ";
+        std::cout << "\nÐ’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ ÑˆÐ¸Ñ„Ñ€:\n";
+        std::cout << "1 â€“ Ð¦ÐµÐ·Ð°Ñ€ÑŒ\n";
+        std::cout << "2 â€“ ÐÑ‚Ð±Ð°Ñˆ\n";
+        std::cout << "3 â€“ XOR\n";
+        std::cout << "4 â€“ ÐŸÐµÑ€ÐµÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ° Ñ‚ÐµÑ‚Ñ€Ð°Ð´ (Swap Nibbles)\n";
+        std::cout << "5 â€“ ÐŸÑ€Ð¾ÑÑ‚Ð¾Ð¹ CBC\n";
+        std::cout << "0 â€“ Ð’Ñ‹Ñ…Ð¾Ð´ Ð² Ð³Ð»Ð°Ð²Ð½Ð¾Ðµ Ð¼ÐµÐ½ÑŽ\n";
+        std::cout << "Ð’Ð°Ñˆ Ð²Ñ‹Ð±Ð¾Ñ€: ";
         std::string choiceStr;
         Getline(choiceStr);
         if (choiceStr == "exit" || choiceStr == "Exit") return;
