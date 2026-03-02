@@ -1,9 +1,5 @@
-#include <iostream>
-
-using namespace std;
-
-int main()
-{
-    cout << "Hello World!" << endl;
+#include "RunApplication.h"
+int main() {
+    RunApplication();
     return 0;
 }
