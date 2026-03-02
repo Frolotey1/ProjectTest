@@ -12,7 +12,7 @@ inline void Getline(std::string& str) {
 }
 
 inline void Err(int time = 1500) {
-    std::cout << "Íåêîğğåêòíûé ââîä!\n";
+    std::cout << "ĞĞµĞºĞ¾Ñ€Ñ€ĞµĞºÑ‚Ğ½Ñ‹Ğ¹ Ğ²Ğ²Ğ¾Ğ´!\n";
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
 }
 
@@ -24,10 +24,10 @@ inline bool IsNumber(const std::string& str) {
     return true;
 }
 
-void Test();       // Öåçàğü
-void TestTwo();    // Àòáàø
+void Test();       // Ğ¦ĞµĞ·Ğ°Ñ€ÑŒ
+void TestTwo();    // ĞÑ‚Ğ±Ğ°Ñˆ
 void TestFree();   // XOR
-void TestFour();   // Ïåğåñòàíîâêà òåòğàä
+void TestFour();   // ĞŸĞµÑ€ĞµÑÑ‚Ğ°Ğ½Ğ¾Ğ²ĞºĞ° Ñ‚ĞµÑ‚Ñ€Ğ°Ğ´
 void TestFive();   // CBC
 
 #endif
